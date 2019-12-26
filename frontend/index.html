@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Final Hackschool Project</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Importing ReactCanvasDraw -->
+    <script src="https://unpkg.com/react-canvas-draw@1/umd/react-canvas-draw.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+      class App extends React.Component{
+        constructor(props){
+          super(props);
+          this.handleClear = this.handleClear.bind(this);
+          this.handleUndo = this.handleUndo.bind(this);
+          this.handleSubmit = this.handleSubmit.bins(this);
+          
+          this.canvasRef = React.createRef() /*using ref to canvas to use child's functions */
+
+        }
+        
+        handleClear(){
+          const canvas = this.canvasRef.current; /*checking if the dom element exists */
+          if(canvas){
+            canvas.clear();
+          }
+        }
+        handleUndo(){
+          const canvas = this.canvasRef.current;
+          if(canvas){
+            canvas.undo();
+          }
+        }
+
+        handleSubmit(){
+          /* send post request to server  */
+          
+        }
+        
+        render(){
+          return (
+          <>  
+          <h1>Draw Your Professor</h1>
+          <div className="main-container">
+            <div className="drawing-area">
+              <DrawableCanvas ref={this.canvasRef}/>
+              <div className="canvas-buttons">
+                <button onClick={this.handleClear}>Clear</button>
+                <button onClick={this.handleUndo}>Undo</button>
+                <button>Submit</button>                
+              </div>
+              <br/>
+              <br/>
+            </div>
+            <div className="display-area">
+              <DrawableCanvas ref={this.canvasRef}/> //change to images from server
+              <DrawableCanvas ref={this.canvasRef}/>
+              <h2>Hi</h2>
+            </div>
+          </div>
+          </>
+          );
+        }
+      }
+      
+      class DrawableCanvas extends ReactCanvasDraw {
+        // Returns a promise that exports the canvas as a Blob object.
+        getPNGBlob() {
+          return new Promise(resolve => {
+            this.canvas.drawing.toBlob(resolve, 'image/png'); //returns a blob object
+          });
+      }
+}
+
+      ReactDOM.render( <App />, document.getElementById('root'));
+
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+  </body>
+</html>

@@ -1,0 +1,28 @@
+.main-container{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    border: solid 2px blue;
+    align-items: center;
+    
+}
+
+.drawing-area{
+    display: flex;
+    height: 50%;
+    flex-direction: column;
+    border: solid 2px violet;
+    align-items: center;
+}
+
+.canvas-buttons{
+    background-color: lightgray;
+}
+.display-area{
+    display: flex;
+    height: 20%;
+    flex-direction: row;
+    border: solid 2px green;
+
+
+}

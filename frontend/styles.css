@@ -23,6 +23,8 @@
     height: 20%;
     flex-direction: row;
     border: solid 2px green;
+    justify-content: space-between;
 
 
 }
+

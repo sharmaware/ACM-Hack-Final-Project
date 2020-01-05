@@ -4,11 +4,17 @@ const app = express();
 
 app.use(express.json());
 
+//allowing access from origin null
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "null"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 const db = [];
 
 app.get("/", (req, res)=>{
-    res.sendFile('../frontend/index.html');
+    res.sendFile('/Users/saarthaksharma/Documents/Final-Hackschool-Project/frontend/index.html');
     
 });
 
@@ -48,7 +54,7 @@ app.post('/picture',
         db.push({
             artist: request.query.artist,
             professor: request.query.professor,
-            rawPicture: request.get('body')
+            rawPicture: request.body
         });
 
         console.log(db);

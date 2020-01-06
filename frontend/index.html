@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <!-- Importing ReactCanvasDraw -->
     <script src="https://unpkg.com/react-canvas-draw@1/umd/react-canvas-draw.js"></script>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="/Users/saarthaksharma/Documents/Final-Hackschool-Project/frontend/styles.css" type="text/css">
 
   </head>
   <body>
@@ -25,7 +25,11 @@
           this.handleUndo = this.handleUndo.bind(this);
           this.handleSubmit = this.handleSubmit.bind(this);
           
+          this.incrementPage = this.incrementPage.bind(this);
+          this.decrementPage = this.decrementPage.bind(this);
+          
           this.canvasRef = React.createRef() /*using ref to canvas to use child's functions */
+          this.state = {page: 0};
 
         }
         
@@ -58,24 +62,25 @@
               body: pic, //pic is my blob object
             });
 
-
-            // const message = await fetch(APIURL + '/picture' + "?artist='saarthak'&professor='smallberg'", {
-            //   method: 'POST',
-            //   headers: new Headers({
-            //     'Content-Type': 'image/png'
-            //   }),
-            //   body: pic, //pic is my blob object
-            //   mode: 'no-cors'
-            // });
-
             console.log(message);
 
           };
 
           addPost();
         }
+        incrementPage(){
+          this.setState({page: (this.state.page+1)});
+          console.log(this.state.page);
+        }
+        decrementPage(){
+          if(this.state.page > 0){
+            this.setState({page: (this.state.page-1)});
+            console.log(this.state.page);
+          }
+        }
         
         render(){
+          console.log("rendering");
           return (
           <>  
           <h1>Draw Your Professor</h1>
@@ -92,8 +97,10 @@
             </div>
             <h2>Other Works</h2>
             <div className="display-area">
-                <OtherWorks i='0' />
-                <OtherWorks i='1' />
+                <button onClick={this.decrementPage}>Prev</button>
+                <OtherWorks index={(2*this.state.page)} />
+                <OtherWorks index={(2*this.state.page + 1)} />
+                <button onClick={this.incrementPage}>Next</button>
             </div>
           </div>
           </>
@@ -113,7 +120,7 @@
       class OtherWorks extends React.Component {
         constructor(props){
           super();
-          this.getImage = this.getImage.bind(this);
+          // this.getImage = this.getImage.bind(this);
  
           
         }
@@ -146,10 +153,10 @@
           
           var imageURL = urlCreator.createObjectURL(this.img.picture);
         console.log("imageURL " + imageURL); */}
-          
+          console.log("Index inside otherworks: " + this.props.index);
           return (
           <div className="other-works">
-              <img src={APIURL + '/picture/' + '0'} />
+              <img src={APIURL + '/picture/' + this.props.index} />
               
           </div>
 

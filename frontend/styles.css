@@ -1,3 +1,12 @@
+h1, h2{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    display: flex;
+    justify-content: center;
+    border: solid 2px yellow;
+    background-color: rgb(168, 210, 250);
+    border-radius: 20px;
+}
+
 .main-container{
     display: flex;
     justify-content: space-around;
@@ -16,7 +25,13 @@
 }
 
 .canvas-buttons{
-    background-color: lightgray;
+    background-color: rgb(168, 210, 250);
+    display: flex;
+    justify-content: space-around;
+    border: solid 2px green;
+    padding-left: 30px;
+    padding-right: 30px;
+
 }
 .display-area{
     display: flex;
@@ -24,7 +39,33 @@
     flex-direction: row;
     border: solid 2px green;
     justify-content: space-between;
-
-
 }
 
+.main-items{
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    align-items: center;
+
+}
+.info-section{
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+/* button{
+    background-color: rgb(168, 210, 250);
+    height: 40px; 
+     width: 50px
+
+} */
+
+.arrow-images{
+    height: 150px;
+    width: 120px;
+}

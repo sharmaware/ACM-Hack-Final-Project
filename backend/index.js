@@ -65,10 +65,10 @@ app.get("/picture/:id", async (req, res)=>{
     console.log("Artist: "+  postRef.data().artist);
     console.log("Professor: " + postRef.data().professor);
 
-    //Converting postref.data from blob to string (binary data)
-    var str = await postRef.data().rawPicture;
+    
+    var picData = await postRef.data().rawPicture;
 
-    res.write(str);
+    res.send(picData);
     // res.write(db[id].rawPicture);
     
 

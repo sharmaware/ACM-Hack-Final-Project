@@ -81,26 +81,39 @@
         
         render(){
           console.log("rendering");
+          console.log("Version: " + React.version);
           return (
           <>  
           <h1>Draw Your Professor</h1>
-          <div className="main-container">
-            <div className="drawing-area">
-              <DrawableCanvas ref={this.canvasRef}/>
-              <div className="canvas-buttons">
-                <button onClick={this.handleClear}>Clear</button>
-                <button onClick={this.handleUndo}>Undo</button>
-                <button onClick={this.handleSubmit}>Submit</button>                
-              </div>
-              <br/>
-              <br/>
-            </div>
-            <h2>Other Works</h2>
+              <div className="main-container">
+                <div className="drawing-area">
+                  <div className="main-items">
+                    <DrawableCanvas ref={this.canvasRef} />
+
+                    <div className="info-section">
+                      <div className="field1">
+                        <p>Author: <input type='text'></input></p>   
+                      </div>
+                      <div className="field2">
+                        <p>Professor: <input type='text'></input></p>
+                      </div>
+                      
+                    </div>
+                  
+                  </div>
+                  <div className="canvas-buttons">
+                    <button onClick={this.handleClear}>Clear</button>
+                    <button onClick={this.handleUndo}>Undo</button>
+                    <button onClick={this.handleSubmit}>Submit</button>
+                  </div>
+
+                </div>
+            <h2>'  Other Works  '</h2>
             <div className="display-area">
-                <button onClick={this.decrementPage}>Prev</button>
+                <button onClick={this.decrementPage}><img className='arrow-images' src="/Users/saarthaksharma/Desktop/left_arrow_modern.png"></img></button>
                 <OtherWorks index={(2*this.state.page)} />
                 <OtherWorks index={(2*this.state.page + 1)} />
-                <button onClick={this.incrementPage}>Next</button>
+                <button onClick={this.incrementPage}><img className='arrow-images' src="/Users/saarthaksharma/Desktop/right_arrow_modern.png"></img></button>
             </div>
           </div>
           </>
@@ -154,6 +167,7 @@
           var imageURL = urlCreator.createObjectURL(this.img.picture);
         console.log("imageURL " + imageURL); */}
           console.log("Index inside otherworks: " + this.props.index);
+          
           return (
           <div className="other-works">
               <img src={APIURL + '/picture/' + this.props.index} />

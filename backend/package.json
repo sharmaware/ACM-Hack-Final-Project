@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/sharmaware/ACM-Hack-Final-Project#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "firebase-admin": "^8.9.0"
   }
 }
